@@ -1,0 +1,28 @@
+{
+    "1210593784128340028" : {
+        "GROUPname": "溫暖領航團", 
+        "CH_welcome":"1210593784606232627",
+        "welcome_MSG":{
+            "title":"小夥伴 {member.display_name}",
+            "description":"大家好～\n我是你的領航員，品客～\n嗯😳\n你問我這裡是哪裡嗎？\n這裡是小夥伴幫我創的邪教團兼道歉公司總部😂\n入我邪教得永生 <:33_good:1210609046147571794>\n好啦開玩笑的😂\n歡迎來到溫暖領航團～\n\n話說——\n你知道這是什麼嗎？\n你相信品客頻道的會員\n在yt頻道上賣45臺幣嗎？\n而且在小夥伴之間大獲好評嗎？\n\n你可以在這邊買一個單位 45臺幣\n所以你的產品成本為 45臺幣\n然後你被賺了45臺幣 你明天還是能喝手搖飲\n雖然我不是數學家\n但那聽起來還不錯對吧\n\n我知道你在想什麼\n這聽起來好到不真實\n但我還是買了",
+            "author":{
+                "name":"歡迎加入 {member.guild.name} ，你是第 {member.guild.member_count} 位小夥伴",
+                "icon_url":"https://images-ext-1.discordapp.net/external/TQqQ_QpWVhCCvmkhwumMv7rSutvQ8T3SnBrrWi42Fmo/%3Fsize%3D512/https/cdn.discordapp.com/icons/1210593784128340028/1f14f23593d7ea153563c8a4419da0c3.jpg"
+            },
+            "images":"https://imgur.com/z43WzR3.png"
+        }
+    },
+    "1302293453459423253":{
+        "GROUPname": "北極企鵝官方伺服器", 
+        "CH_welcome":"1302828439329308753",
+        "welcome_MSG":{
+            "title":"人類 {member.display_name}",
+            "description":"這裡不會有恐怖的北極熊，也不會有很呆的企鵝，只會有一隻神奇的PG企鵝和一隻北極貓。\n 這聽起來很神奇對吧? 南北極的生物全都聚在一起了。\n 但沒關係，請各位享受這裡，不要製造困擾喔:D\n\n by.北極企鵝 ",
+            "author":{
+                "name":"歡迎加入 {member.guild.name}，你是第 {member.guild.member_count} 位在北極的人類",
+                "icon_url":"https://cdn.discordapp.com/app-icons/1269666706876530733/e185878d40272a50720334434811b71a.png?size=256"
+            },
+            "images":""
+        }
+    }
+}

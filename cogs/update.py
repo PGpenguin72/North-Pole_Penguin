@@ -8,20 +8,17 @@ class update(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
     
-    @app_commands.command(name = "更新公告", description = "發出最新一期更新公告(1.1.1)。")
+    @app_commands.command(name = "更新公告", description = "發出最新一期更新公告(1.1.3)。")
     async def update(self, interaction: discord.Interaction):
-        embed = discord.Embed(title="北極企鵝版本1.1.1",
+        embed = discord.Embed(title="北極企鵝版本1.1.3",
                               description="新增以下功能:",
                               colour=0x07dfd0,
                               timestamp=datetime.now())
 
         embed.set_author(name="###北極企鵝更新公告 ###")
 
-        embed.add_field(name="/音樂新增建議 [內容]",
-                        value="為未來的播放音樂功能提供之音樂的建議。",
-                        inline=False)
-        embed.add_field(name="#/迷因 [選項]",
-                        value="新增一條迷因。",
+        embed.add_field(name="/簽到",
+                        value="每天一簽，來看看誰的簽到數量最大吧!(備註:排行榜等到有人簽到數達到10才開啟)",
                         inline=False)
 
         embed.set_footer(text="北極企鵝 || Created by. PGpenguin72 and IceBearowob",

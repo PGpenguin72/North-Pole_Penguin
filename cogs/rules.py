@@ -39,7 +39,7 @@ class Rules(commands.Cog):
             "6. 我們會注意各位小夥伴的言論，不希望任何人的負面情緒影響到想開心遊玩的小夥伴們。",
             "7. 如果有負面情緒、或是想要超派爭吵，可以在 #小樹洞 處理，裡面的發言不受團規限制。",
             "8. 若違反以上規定，我們會先以「拔除身份組」跟「禁言」警告⚠️，禁言天數會以管理員討論後視情況而懲處。違反超過三次者會請小夥伴先離開大家(DC停權)。",
-            "9. 請勿違反我國(中華民國)之律法，違者將處飛機票一張，永不加入。"
+            "9. 請勿違反Discord之 服務條款 及 社群守則 ，違者將處乙張飛機票，永不加入。"
         ]
         
         en_rule_texts = [
@@ -51,20 +51,29 @@ class Rules(commands.Cog):
             "We monitor everyone’s speech and aim to ensure that negative emotions do not impact members who wish to have fun.",
             "If you need to vent or have heated discussions, please use #venting-space, where messages are not subject to regular rules.",
             "If any of the above rules are violated, we will issue a warning by removing roles or imposing a mute⚠️. The mute duration will be determined by the admins based on the situation. Violating rules more than three times may result in a temporary suspension from the community (Discord ban).",
-            "Please do not violate the laws of our country (Republic of China). Those who do so will be permanently banned from rejoining."
+            "Please do not violate [Discord's terms of service](https://discord.com/terms) and [Community Guidelines](https://discord.com/guidelines). Those who do so will be permanently banned from rejoining."
         ]
         
         embed = discord.Embed(title="領航團團規",
                               description="The rule of our group.",
                               colour=choice(colors),
                               timestamp=datetime.now())
-
-        if 規則第〇條:
-            index = int(規則第〇條) - 1  # Convert to 0-based index
-            embed.add_field(name=rule_texts[index], value=en_rule_texts[index], inline=False)
+        if interaction.guild.id == 1210593784128340028:
+            if 規則第〇條:
+                index = int(規則第〇條) - 1  # Convert to 0-based index
+                embed.add_field(name=rule_texts[index], value=en_rule_texts[index], inline=False)
+            else:
+                for i in range(len(rule_texts)):
+                    embed.add_field(name=rule_texts[i], value=en_rule_texts[i], inline=False)
+        elif interaction.user.id == 609189792571457550:
+            if 規則第〇條:
+                index = int(規則第〇條) - 1  # Convert to 0-based index
+                embed.add_field(name=rule_texts[index], value=en_rule_texts[index], inline=False)
+            else:
+                for i in range(len(rule_texts)):
+                    embed.add_field(name=rule_texts[i], value=en_rule_texts[i], inline=False)
         else:
-            for i in range(len(rule_texts)):
-                embed.add_field(name=rule_texts[i], value=en_rule_texts[i], inline=False)
+            embed.add_field(name="不好意思，本功能屬於訂製功能，目前無法在這裡使用，若有問題請聯繫我們。", value="北極企鵝官方伺服器: https://discord.gg/jfPyyUvrm4", inline=False)
 
         embed.set_footer(text="北極企鵝 || Created by. PGpenguin72 and IceBearowob",icon_url="https://cdn.discordapp.com/app-icons/1269666706876530733/e185878d40272a50720334434811b71a.png?size=256")
         await interaction.response.send_message(embed=embed)

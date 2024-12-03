@@ -1,0 +1,12 @@
+{
+    "server_id" : {
+        "server_name" : "enter your sever name here.",
+        "log_CH" : "enter log channel id here.",
+        "channel_id" : "enter chat id here."
+    } ,
+    "1302293453459423253" : {
+        "server_name" : "北極企鵝官方支援伺服器",
+        "log_CH" : "1302313363086381156",
+        "channel_id" : "1302318700531290112"
+    }
+}

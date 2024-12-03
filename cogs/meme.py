@@ -28,9 +28,10 @@ class meme(commands.Cog):
         Choice(name="企鵝·TMD", value="7"),
         Choice(name="企鵝·操!", value="8"),
         Choice(name="原神啟動!", value="9"),
-        Choice(name="品客瑞克搖", value="10")
+        Choice(name="品客瑞克搖", value="10"),
+        Choice(name="軒軒瑞克搖", value="11")
     ])
-    async def meme(self, interaction: discord.Interaction, 選擇迷因: Optional[str] = None):
+    async def meme(self, interaction: discord.Interaction, 選擇迷因: str = None):
         gif_url = [
             "https://imgur.com/qBlth1H.gif",
             "https://imgur.com/mEJFEtR.gif",
@@ -41,7 +42,8 @@ class meme(commands.Cog):
             "https://c.tenor.com/wxoWW3t8VVIAAAAC/tenor.gif",
             "https://c.tenor.com/FqOiNT34Tn0AAAAC/tenor.gif",
             "https://media1.tenor.com/m/fDSBzsHOFboAAAAC/%E5%8E%9F%E7%A5%9E-%E5%90%AF%E5%8A%A8.gif",
-            "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmZoMXdld2ExYTloOG45eXc4MmQ0NmdrZjNtcGdqejl0N2p5NTd1YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8CSpGec911fwZJ24Nv/giphy.gif"
+            "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmZoMXdld2ExYTloOG45eXc4MmQ0NmdrZjNtcGdqejl0N2p5NTd1YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8CSpGec911fwZJ24Nv/giphy.gif",
+            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2R5ZzRsY2VzbzBoYTVreWc5aXZqYTFjZDVjOGdkMDZ6dDBsYTZweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/v7YoX4NpnJO28mUb44/giphy.gif"
         ]
         index = int(選擇迷因) - 1
         await interaction.response.send_message(gif_url[index])

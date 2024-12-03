@@ -1,0 +1,97 @@
+import discord
+from discord import app_commands
+from discord.ext import commands
+import json
+import random
+
+def reload():
+    with open(file_path, 'r', encoding='utf-8') as JSON_end_passcode:
+        data = json.load(JSON_end_passcode)
+    return data
+
+file_path = './json/end_passcode.json'
+
+class end_passcode(commands.Cog):
+    def __init__(self, bot: commands.Bot):
+        self.bot = bot
+
+    @app_commands.command(name="終極密碼", description="來猜猜看終極密碼吧!")
+    @app_commands.describe(選擇最小值 = "請輸入最小的數字應該是...?", 選擇最大值 = "請輸入最大的數字是...?")
+    async def end_passcode(self, interaction: discord.Interaction, 選擇最小值: str.isdigit, 選擇最大值: str.isdigit):
+        CH_id = interaction.channel_id
+        CH_Get = reload()
+        if str(CH_id) in CH_Get:
+            end_passcode_range = int(CH_Get[str(CH_id)]['range'])
+            await interaction.response.send_message(f"已在此頻道開啟遊戲。")
+        else:
+            await interaction.response.send_message(f"開始遊戲，請輸入一個 {選擇最小值} ~ {選擇最大值} 的數字。")
+            min = 選擇最小值
+            max = 選擇最大值
+            JSONdata = {
+                f"{CH_id}": {
+                    "end_passcode_num": random.randint(min, max)
+                } 
+            }   
+            
+            data = reload()
+            data.update(JSONdata)
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+        
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.author.bot:
+            return
+
+        data = reload()
+        Higher_score = int(data.get("The_Higher_Score", 0))
+        CH_Get = data.get(str(message.channel.id), None)
+        channel_id = message.channel.id
+        channel = self.bot.get_channel(channel_id)
+
+        if CH_Get is None:
+            return
+
+        last_end_passcodeer = CH_Get["last_end_passcodeer"]
+        Now_end_passcode = int(CH_Get["end_passcode_num"])
+        member = message.author.id
+
+        if message.content.isdigit():
+            if last_end_passcodeer == str(member):
+                await message.add_reaction("❌")
+                await channel.send(f"不，有人連續了，打指令重新開始吧! \n目前全北極最高紀錄: {Higher_score}")
+
+                del data[str(channel_id)]
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    json.dump(data, file, ensure_ascii=False, indent=4)
+
+            elif int(message.content) == Now_end_passcode:
+                if Now_end_passcode == 272:
+                    await channel.send(f"恭喜 <@{member}> 數到了第272個數字，觸發隱藏獎勵!!!請將本截圖提供給 <@609189792571457550> 並提供訊息鏈結，來兌換一個精美獎品喔:D")
+                    print(f"用戶{message.author.display_name}觸發了隱藏獎勵!")
+
+                await message.add_reaction("✅")
+                Now_end_passcode += 1
+
+                # 更新 JSON 資料
+                data[str(channel_id)] = {
+                    "end_passcode_num": str(Now_end_passcode),
+                    "last_end_passcodeer": str(member)
+                }
+
+                if Now_end_passcode > Higher_score:
+                    data["The_Higher_Score"] = str(Now_end_passcode)
+
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    json.dump(data, file, ensure_ascii=False, indent=4)
+
+            else:
+                await message.add_reaction("❌")
+                await channel.send(f"不，有人失誤了，打指令重新開始吧! \n目前全北極最高紀錄: {Higher_score}")
+
+                del data[str(channel_id)]
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    json.dump(data, file, ensure_ascii=False, indent=4)
+
+async def setup(bot: commands.Bot):
+    await bot.add_cog(end_passcode(bot))

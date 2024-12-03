@@ -4,24 +4,26 @@ from datetime import datetime
 import json
 from random import choice
 
-with open('./json/welcome.json', 'r', encoding='utf-8') as JSON_welcome:
-   data = json.load(JSON_welcome)
-
 colors = [
     0xc97e4d, 0x8cbf5e, 0x6aa2d2, 0xe6a157, 0xb37ca1, 0x59a5a2, 0xde8579, 
     0x9289b8, 0xa2b872, 0xcb9763, 0x798ea4, 0xbf677a, 0x7aa861, 0x9a7a5c, 
     0x669f99, 0xb2a35c, 0xd17769, 0x7189c0, 0x9c8b77, 0x848f73
 ]
 
-class Event(commands.Cog):
+
+
+class Welcome(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     def format_welcome_message(self, member, welcome_MSG):
-        title = welcome_MSG["title"].replace("{member.display_name}", member.display_name)
+        count = member.guild.member_count
+        guild = member.guild.name
+        user = member.display_name
+        title = welcome_MSG["title"].replace("{user}", user)
         author_name = welcome_MSG["author"]["name"]
-        author_name = author_name.replace("{member.guild.name}", member.guild.name)
-        author_name = author_name.replace("{member.guild.member_count}", str(member.guild.member_count))
+        author_name = author_name.replace("{guild}", guild)
+        author_name = author_name.replace("{count}", str(count))
         
         return title, author_name
 
@@ -35,7 +37,7 @@ class Event(commands.Cog):
 
         embed.set_author(
             name=author_name,
-            icon_url=welcome_MSG["author"]["icon_url"]
+            icon_url = member.guild.icon
         )
 
         if welcome_MSG.get("images"):
@@ -52,7 +54,8 @@ class Event(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         guild_id = str(member.guild.id)
-
+        with open('./json/welcome.json', 'r', encoding='utf-8') as JSON_welcome:
+            data = json.load(JSON_welcome)
         if guild_id not in data:
             return
 
@@ -70,4 +73,4 @@ class Event(commands.Cog):
         await self.send_welcome_embed(channel, member, welcome_MSG, title, author_name)
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(Event(bot))
+    await bot.add_cog(Welcome(bot))

@@ -1,0 +1,23 @@
+{
+        "enter guild id here": {
+                "guild_name": "enter guild name here",
+                "Voice_State": "True or False"
+        },
+        "1210593784128340028": {
+                "guild_name": "溫暖領航團",
+                "Voice_State": "True",
+                "null": "False"
+        },
+        "1302293453459423253": {
+                "guild_name": "北極企鵝官方支援伺服器",
+                "Voice_State": "True"
+        },
+        "855736233778479114": {
+                "guild_name": "🌎PG企鵝俱樂部🌎",
+                "Voice_State": "False"
+        },
+        "1285643404633440380": {
+                "guild_name": "一個神奇的窩",
+                "Voice_State": "False"
+        }
+}

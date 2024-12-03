@@ -1,0 +1,9 @@
+{
+    "enter channel id here": {
+        "passcode": "enter the code here",
+        "range" : {
+            "min" : "enter the min num",
+            "max" : "enter the max num"
+        }
+    }
+}
